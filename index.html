@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Finder</title>
+</head>
+<body>
+    <p>Your current location is: </p>
+    <p id="location"></p>
+
+    <script>
+        window.onload = function(){
+            trackLocation();
+        };
+
+        var x = document.getElementById("location");
+        var lat =0;
+        var long = 0;
+        var watchId; // To store the ID of the watchPosition
+
+        function trackLocation() {
+            if (navigator.geolocation) {
+                watchId = navigator.geolocation.watchPosition(showExactPosition, showError);
+            } else {
+                x.innerHTML = "Geolocation is not supported";
+            }
+        }
+
+        function showExactPosition(position){
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+
+            // x.innerHTML = "Latitude: " + position.coords.latitude +
+            // "<br>Longitude: " + position.coords.longitude;
+
+            x.innerHTML = "Latitude: " + lat +
+            "<br>Longitude: " + long;
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred.";
+                    break;
+            }
+        }
+    </script>   
+</body>
+</html>
