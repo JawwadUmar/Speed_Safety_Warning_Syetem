@@ -17,8 +17,34 @@
         var x = document.getElementById("location");
         var lat =0;
         var long = 0;
+        var coordinates =[];
         var watchId; // To store the ID of the watchPosition
 
+        //create the map
+        function generateKey(lat, long) {
+                return lat + ',' + long;
+            }
+
+            // Map-like object to store coordinates as keys and radii as values
+            const map = {};
+
+            // Adding data to the map
+            function addToMap(lat, long, radius) {
+                const key = generateKey(lat, long);
+                map[key] = radius;
+            }
+
+            // Getting the radius based on coordinates
+            function getRadius(lat, long) {
+                const key = generateKey(lat, long);
+                return map[key];
+            }
+
+            // Example usage
+            addToMap(37.7749, -122.4194, 1000); // San Francisco, CA with radius 1000
+            addToMap(40.7128, -74.0060, 800);   // New York City, NY with radius 800
+
+            
         function trackLocation() {
             if (navigator.geolocation) {
                 watchId = navigator.geolocation.watchPosition(showExactPosition, showError);
@@ -30,6 +56,10 @@
         function showExactPosition(position){
             lat = position.coords.latitude;
             long = position.coords.longitude;
+            
+            // Update the coordinates array with the new values
+            coordinates = [lat, long];
+            console.log(coordinates);
 
             // x.innerHTML = "Latitude: " + position.coords.latitude +
             // "<br>Longitude: " + position.coords.longitude;
@@ -54,6 +84,9 @@
                     break;
             }
         }
+
+        
+
     </script>   
 </body>
 </html>
