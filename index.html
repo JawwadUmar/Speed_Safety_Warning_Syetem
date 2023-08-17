@@ -22,7 +22,8 @@
 
         //create the map
         function generateKey(lat, long) {
-                return lat + ',' + long;
+                // return lat + ',' + long;
+                return [lat, long];
             }
 
             // Map-like object to store coordinates as keys and radii as values
@@ -40,10 +41,23 @@
                 return map[key];
             }
 
-            // Example usage
-            addToMap(37.7749, -122.4194, 1000); // San Francisco, CA with radius 1000
-            addToMap(40.7128, -74.0060, 800);   // New York City, NY with radius 800
 
+            addToMap(22.520694, 75.921953, 10.6531); 
+            addToMap(22.520734, 75.922038, 10.6531); 
+            addToMap(22.520731, 75.922062, 10.6531);
+            addToMap(22.52068, 75.922284, 18.2727);   
+            addToMap(22.520702, 75.922424, 18.2727);   
+            addToMap(22.520786, 75.922563, 17.1537);   
+            addToMap(22.520802, 75.922708, 17.1537);   
+            addToMap(22.520609, 75.923312, 18.4929);   
+            addToMap(22.520703, 75.923536, 18.4929);   
+            addToMap(22.52306, 75.924593, 15.1136);   
+            addToMap(22.523144, 75.924728, 15.1136);   
+            addToMap(22.523146, 75.9252, 13.7793);   
+            addToMap(22.523197, 75.92531, 13.7793);   
+            addToMap(22.523308, 75.92546, 25.7057);   
+            addToMap(22.523423, 75.925525, 16.6246);   
+            addToMap(22.525008, 75.925663, 15.7109);
             
         function trackLocation() {
             if (navigator.geolocation) {
@@ -54,8 +68,11 @@
         }
 
         function showExactPosition(position){
+            // lat = 22.523197;
+            // long = 75.92531;
             lat = position.coords.latitude;
             long = position.coords.longitude;
+            
             
             // Update the coordinates array with the new values
             coordinates = [lat, long];
@@ -64,8 +81,19 @@
             // x.innerHTML = "Latitude: " + position.coords.latitude +
             // "<br>Longitude: " + position.coords.longitude;
 
+            // x.innerHTML = "Latitude: " + lat +
+            // "<br>Longitude: " + long;
+
+            const radius = getRadius(lat, long);
+            if (typeof radius === 'undefined') {
+                console.log(`No radius found for coordinates: (${lat}, ${long})`);
+            } 
+            else {
+                console.log(`Radius for coordinates (${lat}, ${long}): ${radius}`);
+            }
             x.innerHTML = "Latitude: " + lat +
-            "<br>Longitude: " + long;
+            "<br>Longitude: " + long +
+            "<br>Radius: " + radius;
         }
 
         function showError(error) {
