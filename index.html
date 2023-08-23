@@ -10,6 +10,8 @@
     <p id="location"></p>
 
     <script>
+        // import { exportSpeed } from '/Speedometer/script.js';
+
         window.onload = function(){
             trackLocation();
         };
@@ -67,34 +69,28 @@
             }
         }
 
-        function showExactPosition(position){
-            // lat = 22.523197;
-            // long = 75.92531;
-            lat = position.coords.latitude;
-            long = position.coords.longitude;
-            
-            
-            // Update the coordinates array with the new values
-            coordinates = [lat, long];
-            console.log(coordinates);
+    function showExactPosition(position) {
+    // lat = 22.523197;
+    // long = 75.92531;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    const speed = position.coords.speed || 0; // Get the current speed from the geolocation data
 
-            // x.innerHTML = "Latitude: " + position.coords.latitude +
-            // "<br>Longitude: " + position.coords.longitude;
+    // Update the coordinates array with the new values
+    coordinates = [lat, long];
+    console.log(coordinates);
 
-            // x.innerHTML = "Latitude: " + lat +
-            // "<br>Longitude: " + long;
-
-            const radius = getRadius(lat, long);
-            if (typeof radius === 'undefined') {
-                console.log(`No radius found for coordinates: (${lat}, ${long})`);
-            } 
-            else {
-                console.log(`Radius for coordinates (${lat}, ${long}): ${radius}`);
-            }
-            x.innerHTML = "Latitude: " + lat +
-            "<br>Longitude: " + long +
-            "<br>Radius: " + radius;
-        }
+    const radius = getRadius(lat, long);
+    if (typeof radius === 'undefined') {
+        console.log(`No radius found for coordinates: (${lat}, ${long})`);
+    } else {
+        console.log(`Radius for coordinates (${lat}, ${long}): ${radius}`);
+    }
+    x.innerHTML = "Latitude: " + lat +
+        "<br>Longitude: " + long +
+        "<br>Radius: " + radius +
+        "<br>Speed: " + speed.toFixed(2) + " m/s"; // Display the speed
+}
 
         function showError(error) {
             switch(error.code) {
