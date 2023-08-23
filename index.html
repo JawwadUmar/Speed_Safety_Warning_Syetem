@@ -60,6 +60,14 @@
             addToMap(22.523308, 75.92546, 25.7057);   
             addToMap(22.523423, 75.925525, 16.6246);   
             addToMap(22.525008, 75.925663, 15.7109);
+
+        
+            function safetyWarning (currSpeed, safeSpeed){
+
+                if(currSpeed >= safeSpeed){
+                    alert("Please slow down");
+                }
+            }
             
         function trackLocation() {
             if (navigator.geolocation) {
@@ -75,6 +83,9 @@
     lat = position.coords.latitude;
     long = position.coords.longitude;
     const speed = position.coords.speed || 0; // Get the current speed from the geolocation data
+    // const speed = 10;
+    // var safeSpeed = 5;
+    // var safeSpeed;
 
     // Update the coordinates array with the new values
     coordinates = [lat, long];
@@ -82,14 +93,22 @@
 
     const radius = getRadius(lat, long);
     if (typeof radius === 'undefined') {
+        safeSpeed = 'undefined';
         console.log(`No radius found for coordinates: (${lat}, ${long})`);
     } else {
+        safeSpeed = (88.87 - 2554.76/radius)*(0.278); //converted into m/s
         console.log(`Radius for coordinates (${lat}, ${long}): ${radius}`);
     }
     x.innerHTML = "Latitude: " + lat +
-        "<br>Longitude: " + long +
-        "<br>Radius: " + radius +
-        "<br>Speed: " + speed.toFixed(2) + " m/s"; // Display the speed
+    "<br>Longitude: " + long +
+    "<br>Radius: " + radius +
+    "<br>SafeSpeed: " + (safeSpeed !== 'undefined' ? safeSpeed.toFixed(2) + " m/s" : 'undefined') +
+    "<br>CurrentSpeed: " + speed.toFixed(2) + " m/s";
+
+
+        if(safeSpeed !== 'undefined'){
+            safetyWarning(speed, safeSpeed);
+        }
 }
 
         function showError(error) {
