@@ -62,9 +62,13 @@
             addToMap(22.525008, 75.925663, 15.7109);
 
         
-            function safetyWarning (currSpeed, safeSpeed){
+            function safetyWarning (currSpeed, safeSpeed, designSpeed){
 
                 if(currSpeed >= safeSpeed){
+                    alert("Please slow down");
+                }
+
+                else if(currSpeed>= designSpeed){
                     alert("Please slow down");
                 }
             }
@@ -94,20 +98,23 @@
     const radius = getRadius(lat, long);
     if (typeof radius === 'undefined') {
         safeSpeed = 'undefined';
+        designSpeed = 'undefined'
         console.log(`No radius found for coordinates: (${lat}, ${long})`);
     } else {
         safeSpeed = (88.87 - 2554.76/radius)*(0.278); //converted into m/s
+        designSpeed = Math.sqrt((0.22) * 9.8 * radius);
         console.log(`Radius for coordinates (${lat}, ${long}): ${radius}`);
     }
     x.innerHTML = "Latitude: " + lat +
     "<br>Longitude: " + long +
     "<br>Radius: " + radius +
     "<br>SafeSpeed: " + (safeSpeed !== 'undefined' ? safeSpeed.toFixed(2) + " m/s" : 'undefined') +
+    "<br>DesignSpeed: " + (designSpeed !== 'undefined' ? designSpeed.toFixed(2) + " m/s" : 'undefined') +
     "<br>CurrentSpeed: " + speed.toFixed(2) + " m/s";
 
 
-        if(safeSpeed !== 'undefined'){
-            safetyWarning(speed, safeSpeed);
+        if(safeSpeed !== 'undefined' || designSpeed !== 'undefined'){
+            safetyWarning(speed, safeSpeed, designSpeed);
         }
 }
 
