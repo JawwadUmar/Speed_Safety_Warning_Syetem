@@ -3,11 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location Finder</title>
+    <title>Safety Warning System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: #777;
+            margin: 5px 0;
+        }
+
+        #location {
+            font-weight: bold;
+        }
+
+        #currentspeed {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00aaff;
+        }
+
+        #safespeed, #designspeed {
+            font-weight: bold;
+            color: #00aa00;
+        }
+    </style>
 </head>
 <body>
-    <p>Your current location is: </p>
-    <p id="location"></p>
+    <div class="card">
+        <h1>Safety Warning System</h1>
+        <p>Your current location is:</p>
+        <p id="location">Fetching...</p>
+    </div>
+
+    <div class="card">
+        <h2>Speed Information</h2>
+        <p>Your Current Speed is:</p>
+        <p id="currentspeed">0 km/h</p>
+        <p>Safe Speed is:</p>
+        <p id="safespeed">N/A</p>
+        <p>Design Speed is:</p>
+        <p id="designspeed">N/A</p>
+    </div>
+
+    <div class="card">
+        <h2>Curvature Information</h2>
+        <p>Radius of Curvature is:</p>
+        <p id="radius">N/A</p>
+    </div>
 
     <script src="script.js"></script>   
 </body>

@@ -9,8 +9,16 @@ function generateKey(lat, long) {
 }
 
 
-
         var x = document.getElementById("location");
+        var r = document.getElementById("radius");
+        var y = document.getElementById("currentspeed");
+        var z = document.getElementById("safespeed");
+        var w = document.getElementById("designspeed");
+        
+
+        // var z = 
+        // var w = 
+        
         var lat =0;
         var long = 0;
         var coordinates =[];
@@ -70,10 +78,10 @@ function generateKey(lat, long) {
         }
 
     function showExactPosition(position) {
-    // lat = 22.523197;
-    // long = 75.92531;
-    lat = position.coords.latitude;
-    long = position.coords.longitude;
+    lat = 22.523197;
+    long = 75.92531;
+    // lat = position.coords.latitude;
+    // long = position.coords.longitude;
     const speed = position.coords.speed || 0; // Get the current speed from the geolocation data
     // const speed = 10;
     // var safeSpeed = 5;
@@ -94,11 +102,15 @@ function generateKey(lat, long) {
         console.log(`Radius for coordinates (${lat}, ${long}): ${radius}`);
     }
     x.innerHTML = "Latitude: " + lat +
-    "<br>Longitude: " + long +
-    "<br>Radius: " + radius +
-    "<br>SafeSpeed: " + (safeSpeed !== 'undefined' ? safeSpeed.toFixed(2) + " m/s" : 'undefined') +
-    "<br>DesignSpeed: " + (designSpeed !== 'undefined' ? designSpeed.toFixed(2) + " m/s" : 'undefined') +
-    "<br>CurrentSpeed: " + speed.toFixed(2) + " m/s";
+    "<br>Longitude: " + long
+    r.innerHTML = radius;
+    y.innerHTML = speed.toFixed(2) + "m/s";
+    z.innerHTML = (safeSpeed !== 'undefined' ? safeSpeed.toFixed(2) + " m/s" : 'undefined');
+    w.innerHTML = (designSpeed !== 'undefined' ? designSpeed.toFixed(2) + " m/s" : 'undefined');
+    
+    // "<br>SafeSpeed: " + (safeSpeed !== 'undefined' ? safeSpeed.toFixed(2) + " m/s" : 'undefined') +
+    // "<br>DesignSpeed: " + (designSpeed !== 'undefined' ? designSpeed.toFixed(2) + " m/s" : 'undefined') +
+    // "<br>CurrentSpeed: " + speed.toFixed(2) + " m/s";
 
 
         if(safeSpeed !== 'undefined' || designSpeed !== 'undefined'){
