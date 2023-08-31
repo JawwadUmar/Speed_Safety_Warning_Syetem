@@ -2,6 +2,20 @@ window.onload = function(){
     trackLocation();
 };
 
+// Function to show a custom alert message
+function customAlert(message) {
+    var modal = document.getElementById("custom-modal");
+    var modalMessage = document.getElementById("modal-message");
+  
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+  }
+
+  document.getElementsByClassName("close")[0].addEventListener("click", function() {
+    var modal = document.getElementById("custom-modal");
+    modal.style.display = "none";
+  });
+
 
 function generateKey(lat, long) {
     // return lat + ',' + long;
@@ -59,11 +73,13 @@ function generateKey(lat, long) {
             function safetyWarning (currSpeed, safeSpeed, designSpeed){
 
                 if(currSpeed >= safeSpeed){
-                    alert("Please slow down");
+                    // alert("Please slow down");
+                    customAlert("Please slow down");
                 }
 
                 else if(currSpeed>= designSpeed){
-                    alert("Please slow down");
+                    // alert("Please slow down");
+                    customAlert("Please slow down");
                 }
             }
             

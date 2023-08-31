@@ -47,3 +47,45 @@ p {
     font-weight: bold;
     color: #00aa00;
 }
+
+/* Styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+
+   .modal-content {
+    background-color: #ffdddd; /* Light red background */
+    border: 1px solid #f44336; /* Red border */
+    margin: 15% auto;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+    position: relative;
+  }
+
+  .close {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px;
+  }
+  
+  /* Additional styling for the message */
+  #modal-message {
+    font-size: 18px;
+    color: #333;
+  }
+  
