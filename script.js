@@ -16,8 +16,6 @@ function generateKey(lat, long) {
         var w = document.getElementById("designspeed");
         
 
-        // var z = 
-        // var w = 
         
         var lat =0;
         var long = 0;
@@ -83,9 +81,6 @@ function generateKey(lat, long) {
     // lat = position.coords.latitude;
     // long = position.coords.longitude;
     const speed = position.coords.speed || 0; // Get the current speed from the geolocation data
-    // const speed = 10;
-    // var safeSpeed = 5;
-    // var safeSpeed;
 
     // Update the coordinates array with the new values
     coordinates = [lat, long];
@@ -108,10 +103,6 @@ function generateKey(lat, long) {
     z.innerHTML = (safeSpeed !== 'undefined' ? safeSpeed.toFixed(2) + " m/s" : 'undefined');
     w.innerHTML = (designSpeed !== 'undefined' ? designSpeed.toFixed(2) + " m/s" : 'undefined');
     
-    // "<br>SafeSpeed: " + (safeSpeed !== 'undefined' ? safeSpeed.toFixed(2) + " m/s" : 'undefined') +
-    // "<br>DesignSpeed: " + (designSpeed !== 'undefined' ? designSpeed.toFixed(2) + " m/s" : 'undefined') +
-    // "<br>CurrentSpeed: " + speed.toFixed(2) + " m/s";
-
 
         if(safeSpeed !== 'undefined' || designSpeed !== 'undefined'){
             safetyWarning(speed, safeSpeed, designSpeed);
